@@ -1,27 +1,39 @@
-import React from 'react';
 import {
   SafeAreaView,
   StatusBar,
   useColorScheme,
   StyleSheet,
-  View,
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import Login from './src/pages/login';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Login from './src/pages/Login';
+import Signup from './src/pages/Signup';
+
+export type RootStackParamList = {
+  Login: undefined;
+  Signup: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={Colors.white}
-      />
-      <View style={styles.container}>
-        <Login />
-      </View>
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={styles.safeArea}>
+          <StatusBar
+            barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+            backgroundColor={Colors.white}
+          />
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen name="Login" component={Login} />
+            <Stack.Screen name="Signup" component={Signup} />
+          </Stack.Navigator>
+      </SafeAreaView>
+    </NavigationContainer>
   );
 }
 
