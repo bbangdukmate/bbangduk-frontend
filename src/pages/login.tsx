@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   View,
   Text,
@@ -8,6 +7,9 @@ import {
   useColorScheme,
 } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../App';
+
 
 type SectionProps = {
   title: string;
@@ -35,12 +37,14 @@ function Section({ title }: SectionProps): React.JSX.Element {
 }
 
 function Login(): React.JSX.Element {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  
   return (
     <View style={styles.container}>
       <Section title='공유할수록 커지는 빵!' />
       <View style={styles.spacer} />
       <View style={styles.socialContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
           <Image
             source={require('../assets/google_login.png')}
             style={styles.socialIcon}
