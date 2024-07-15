@@ -10,10 +10,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Login from './src/pages/Login';
 import Signup from './src/pages/Signup';
+import Profile from './src/pages/Profile';
 
 export type RootStackParamList = {
   Login: undefined;
   Signup: undefined;
+  Profile: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -31,6 +33,7 @@ function App(): React.JSX.Element {
           <Stack.Navigator initialRouteName="Login">
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Signup" component={Signup} />
+            <Stack.Screen name="Profile" component={Profile} />
           </Stack.Navigator>
       </SafeAreaView>
     </NavigationContainer>
